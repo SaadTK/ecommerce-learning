@@ -1,6 +1,7 @@
 import express from "express";
 
-const morgan = require("morgan");
+// const morgan = require("morgan");
+import morgan from "morgan";
 
 const app = express();
 
