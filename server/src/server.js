@@ -7,9 +7,21 @@ const app = express();
 
 app.use(morgan("dev"));
 
-app.get("/test", (req, res) => {
+//middleware
+const isLoggedIn = (req, res, next) => {
+  const login = false;
+  if (login) {
+    next();
+  } else {
+    return res.status(401).json({ message: "Please Login first." });
+  }
+  // console.log("isLoggedIn middleware");
+};
+
+app.get("/api/user", isLoggedIn, (req, res) => {
+  console.log("User Profile.");
   res.status(200).send({
-    message: "API is working Fine.",
+    message: "User profile is returned.",
   });
 });
 
